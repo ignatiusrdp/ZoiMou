@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_notes"
+        android:icon="@drawable/ic_notes"
+        android:title="@string/title_notes" />
+
+    <item
+        android:id="@+id/navigation_todo"
+        android:icon="@drawable/ic_todo"
+        android:title="@string/title_todo" />
+
+    <item
+        android:id="@+id/navigation_images"
+        android:icon="@drawable/ic_images"
+        android:title="@string/title_images" />
+    <item
+        android:id="@+id/navigation_weather"
+        android:icon="@drawable/ic_weather"
+        android:title="@string/title_weather" />
+
+</menu>
