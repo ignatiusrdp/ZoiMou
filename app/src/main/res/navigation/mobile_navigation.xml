@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/navigation_notes"
-        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.notes.NotesFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.notes.NotesFragment"
         android:label="@string/title_notes"
         tools:layout="@layout/fragment_notes" />
 
     <fragment
         android:id="@+id/navigation_todo"
-        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.todo.TodoFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.todo.TodoFragment"
         android:label="@string/title_todo"
         tools:layout="@layout/fragment_todo" />
 
     <fragment
         android:id="@+id/navigation_images"
-        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.images.ImagesFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.images.ImagesFragment"
         android:label="@string/title_images"
         tools:layout="@layout/fragment_images" />
     <fragment
         android:id="@+id/navigation_weather"
-        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.weather.WeatherFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.weather.WeatherFragment"
         android:label="@string/title_weather"
         tools:layout="@layout/fragment_weather" />
 </navigation>

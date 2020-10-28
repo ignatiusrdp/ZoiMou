@@ -1,13 +1,13 @@
-package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.images
+package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.weather
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ImagesViewModel : ViewModel() {
+class WeatherViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is images Fragment"
+        value = "This is weather Fragment"
     }
     val text: LiveData<String> = _text
 }

@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.images
+package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.weather
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 
-class ImagesFragment : Fragment() {
+class WeatherFragment : Fragment() {
 
-    private lateinit var imagesViewModel: ImagesViewModel
+    private lateinit var weatherViewModel: WeatherViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        imagesViewModel =
-                ViewModelProviders.of(this).get(ImagesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_images, container, false)
-        val textView: TextView = root.findViewById(R.id.images)
-        imagesViewModel.text.observe(viewLifecycleOwner, Observer {
+        weatherViewModel =
+                ViewModelProviders.of(this).get(WeatherViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_weather, container, false)
+        val textView: TextView = root.findViewById(R.id.weather)
+        weatherViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

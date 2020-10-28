@@ -1,13 +1,13 @@
-package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.todo
+package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.notes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class TodoViewModel : ViewModel() {
+class NotesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is todo Fragment"
+        value = "This is notes Fragment"
     }
     val text: LiveData<String> = _text
 }

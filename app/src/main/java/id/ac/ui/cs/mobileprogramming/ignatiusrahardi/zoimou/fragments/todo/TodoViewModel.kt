@@ -1,13 +1,13 @@
-package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.ui.weather
+package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.todo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class WeatherViewModel : ViewModel() {
+class TodoViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is weather Fragment"
+        value = "This is todo Fragment"
     }
     val text: LiveData<String> = _text
 }

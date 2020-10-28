@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/note_ico"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/ic_notes" />
+
+        <TextView
+            android:id="@+id/note_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@+id/note_ico"
+            android:text="this is dummy title"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/note_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/note_title"
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@+id/note_ico"
+            android:text="Tap to see the details"
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

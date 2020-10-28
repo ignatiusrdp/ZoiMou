@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou
+package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +20,11 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_notes, R.id.navigation_todo, R.id.navigation_images, R.id.navigation_weather))
+            R.id.navigation_notes,
+            R.id.navigation_todo,
+            R.id.navigation_images,
+            R.id.navigation_weather
+        ))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
