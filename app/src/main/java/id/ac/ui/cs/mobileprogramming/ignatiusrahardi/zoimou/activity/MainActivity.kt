@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.activity
 
+import android.Manifest
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
@@ -18,6 +19,7 @@ import androidx.navigation.ui.setupWithNavController
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.services.GetWeatherService
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.viewmodels.WeatherViewModel
+import kotlinx.android.synthetic.main.fragment_images.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -79,8 +81,10 @@ class MainActivity : AppCompatActivity() {
 
     fun checkPermission():Boolean{
         if(
-            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) === PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION) === PackageManager.PERMISSION_GRANTED
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) === PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) === PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) === PackageManager.PERMISSION_GRANTED||
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) === PackageManager.PERMISSION_GRANTED
         ){
             return true
         }
@@ -89,7 +93,8 @@ class MainActivity : AppCompatActivity() {
     private fun grantPermission(){
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_CODE_LOCATION
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE_LOCATION
         )
     }
 
@@ -119,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 getWeatherData()
             } else {
-                Toast.makeText(this,"You wont be able to access the weather function in this app", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"You wont be able to access weather and gallery app", Toast.LENGTH_LONG).show()
             }
         }
     }

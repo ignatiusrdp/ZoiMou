@@ -15,7 +15,7 @@ import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.todo.TodoF
 import kotlinx.android.synthetic.main.todos_cardview.view.*
 
 class TodoAdapter(
-    private val listener: TodoFragment, private val context : Context?
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     private var list = emptyList<Todo>()

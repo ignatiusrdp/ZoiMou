@@ -36,7 +36,7 @@ class TodoFragment : Fragment(), TodoAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         // RecycleView
-        val adapter = TodoAdapter(this,context)
+        val adapter = TodoAdapter(this)
 
         todos.adapter = adapter
         adapter.registerAdapterDataObserver(object: RecyclerView.AdapterDataObserver(){

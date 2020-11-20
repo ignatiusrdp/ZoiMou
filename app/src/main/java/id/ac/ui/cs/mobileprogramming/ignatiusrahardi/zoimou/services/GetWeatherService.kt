@@ -37,6 +37,7 @@ import java.util.*
 class GetWeatherService : LifecycleService() {
 
     private val job = CoroutineScope(IO)
+    private var isActive = true
     private val API_ID = "4ae8ee65631e1ab1295a19cc7cefe9b9"
     private lateinit var db: AppDatabase
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -52,19 +53,19 @@ class GetWeatherService : LifecycleService() {
         registerReceiver(notificationBroadcastReceiver, weatherFilter)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         db = AppDatabase.getDatabase(application)
-//        if (checkPermission()){
-//            fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
-//                var location: Location = task.result
-//                if(location == null){
-//                    getNewLocation()
-//                } else {
-//                    job.launch {
-//                        coroutine(location.latitude, location.longitude)
-//                    }
-//                }
-//
-//            }
-//        }
+        if (checkPermission()){
+            fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
+                var location: Location = task.result
+                if(location == null){
+                    getNewLocation()
+                } else {
+                    job.launch {
+                        coroutine(location.latitude, location.longitude)
+                    }
+                }
+
+            }
+        }
 
         return START_STICKY
     }
@@ -123,37 +124,38 @@ class GetWeatherService : LifecycleService() {
     private suspend fun coroutine(lat: Double, lon: Double){
         val queue = Volley.newRequestQueue(this)
         val url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$API_ID&units=metric"
-        while(true){
-        val currentTime = getCurrentTime()
-        val stringRequest = StringRequest(
-            Request.Method.GET, url,
-            { response ->
-                val jsonObj = JSONObject(response)
-
-                val main = jsonObj.getJSONObject("main")
-                val sys = jsonObj.getJSONObject("sys")
-                val weatherObj = jsonObj.getJSONArray("weather").getJSONObject(0)
-                val updatedAt:Long = jsonObj.getLong("dt")
-
-                val address = jsonObj.getString("name")+", "+sys.getString("country")
-
-                val time = "Updated at: $currentTime"
-                val temp = main.getString("temp")+"°C"
-                val feelsLike= main.getString("feels_like")+"°C"
-                val weatherMain = weatherObj.getString("main")
-                val weatherDescription = weatherObj.getString("description")
-                val weatherIcon = weatherObj.getString("icon")
-                val weatherUrl = "http://openweathermap.org/img/w/$weatherIcon.png;"
-                val weather = Weather(0,weatherMain, weatherDescription,temp,feelsLike,time,address, weatherUrl)
-                job.launch {
-                    insertData(weather)
-                }
-            },
-            {
-                err ->
-                Toast.makeText(this,"Error when gathering weather data: $err", Toast.LENGTH_SHORT).show()
-            })
-        queue.add(stringRequest)
+        while(isActive){
+            val currentTime = getCurrentTime()
+            println("hehe")
+//        val stringRequest = StringRequest(
+//            Request.Method.GET, url,
+//            { response ->
+//                val jsonObj = JSONObject(response)
+//
+//                val main = jsonObj.getJSONObject("main")
+//                val sys = jsonObj.getJSONObject("sys")
+//                val weatherObj = jsonObj.getJSONArray("weather").getJSONObject(0)
+//                val updatedAt:Long = jsonObj.getLong("dt")
+//
+//                val address = jsonObj.getString("name")+", "+sys.getString("country")
+//
+//                val time = "Updated at: $currentTime"
+//                val temp = main.getString("temp")+"°C"
+//                val feelsLike= main.getString("feels_like")+"°C"
+//                val weatherMain = weatherObj.getString("main")
+//                val weatherDescription = weatherObj.getString("description")
+//                val weatherIcon = weatherObj.getString("icon")
+//                val weatherUrl = "http://openweathermap.org/img/w/$weatherIcon.png;"
+//                val weather = Weather(0,weatherMain, weatherDescription,temp,feelsLike,time,address, weatherUrl)
+//                job.launch {
+//                    insertData(weather)
+//                }
+//            },
+//            {
+//                err ->
+//                Toast.makeText(this,"Error when gathering weather data: $err", Toast.LENGTH_SHORT).show()
+//            })
+//            queue.add(stringRequest)
             delay(60000)
         }
 
@@ -176,6 +178,7 @@ class GetWeatherService : LifecycleService() {
 
     override fun onDestroy() {
         super.onDestroy()
+        isActive = false
         job.cancel()
         unregisterReceiver(notificationBroadcastReceiver)
     }

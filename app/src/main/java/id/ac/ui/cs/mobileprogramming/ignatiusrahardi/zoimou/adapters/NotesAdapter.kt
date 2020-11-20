@@ -58,7 +58,7 @@ class NotesAdapter(
     }
 
     interface OnItemClickListener{
-        //dummy need param
+
         fun onItemClick(currentNote: Notes)
     }
 }
