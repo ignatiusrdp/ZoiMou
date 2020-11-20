@@ -44,12 +44,12 @@ class GetWeatherService : LifecycleService() {
     private lateinit var locationRequest: LocationRequest
     val notificationBroadcastReceiver: NotificationBroadcastReceiver = NotificationBroadcastReceiver()
     val notificationIntent: Intent = Intent("id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.WeatherNotification")
-    var counter = 0
+
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
-        val weatherFilter : IntentFilter = IntentFilter("id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.WeatherNotification")
+        val weatherFilter = IntentFilter("id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.WeatherNotification")
         registerReceiver(notificationBroadcastReceiver, weatherFilter)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         db = AppDatabase.getDatabase(application)
@@ -98,13 +98,12 @@ class GetWeatherService : LifecycleService() {
             val current: LocalDateTime = LocalDateTime.now()
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")
             var myDate: String =  current.format(formatter)
-            Log.d("Date","DATE : " + myDate)
+
             return myDate
         } else {
             var date = Date()
             val formatter = SimpleDateFormat("dd/MM/yyyy hh:mm a")
             val myDate: String = formatter.format(date)
-            Log.d("Date","DATE : " + myDate)
             return myDate
         }
     }
@@ -126,37 +125,37 @@ class GetWeatherService : LifecycleService() {
         val url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$API_ID&units=metric"
         while(isActive){
             val currentTime = getCurrentTime()
-            println("hehe")
-//        val stringRequest = StringRequest(
-//            Request.Method.GET, url,
-//            { response ->
-//                val jsonObj = JSONObject(response)
-//
-//                val main = jsonObj.getJSONObject("main")
-//                val sys = jsonObj.getJSONObject("sys")
-//                val weatherObj = jsonObj.getJSONArray("weather").getJSONObject(0)
-//                val updatedAt:Long = jsonObj.getLong("dt")
-//
-//                val address = jsonObj.getString("name")+", "+sys.getString("country")
-//
-//                val time = "Updated at: $currentTime"
-//                val temp = main.getString("temp")+"°C"
-//                val feelsLike= main.getString("feels_like")+"°C"
-//                val weatherMain = weatherObj.getString("main")
-//                val weatherDescription = weatherObj.getString("description")
-//                val weatherIcon = weatherObj.getString("icon")
-//                val weatherUrl = "http://openweathermap.org/img/w/$weatherIcon.png;"
-//                val weather = Weather(0,weatherMain, weatherDescription,temp,feelsLike,time,address, weatherUrl)
-//                job.launch {
-//                    insertData(weather)
-//                }
-//            },
-//            {
-//                err ->
-//                Toast.makeText(this,"Error when gathering weather data: $err", Toast.LENGTH_SHORT).show()
-//            })
-//            queue.add(stringRequest)
-            delay(60000)
+
+            val stringRequest = StringRequest(
+                Request.Method.GET, url,
+                { response ->
+                    val jsonObj = JSONObject(response)
+
+                    val main = jsonObj.getJSONObject("main")
+                    val sys = jsonObj.getJSONObject("sys")
+                    val weatherObj = jsonObj.getJSONArray("weather").getJSONObject(0)
+                    val updatedAt:Long = jsonObj.getLong("dt")
+
+                    val address = jsonObj.getString("name")+", "+sys.getString("country")
+
+                    val time = "Updated at: $currentTime"
+                    val temp = main.getString("temp")+"°C"
+                    val feelsLike= main.getString("feels_like")+"°C"
+                    val weatherMain = weatherObj.getString("main")
+                    val weatherDescription = weatherObj.getString("description")
+                    val weatherIcon = weatherObj.getString("icon")
+                    val weatherUrl = "http://openweathermap.org/img/w/$weatherIcon.png;"
+                    val weather = Weather(0,weatherMain, weatherDescription,temp,feelsLike,time,address, weatherUrl)
+                    job.launch {
+                        insertData(weather)
+                    }
+                },
+                {
+                    err ->
+                    Toast.makeText(this,"Error when gathering weather data: $err", Toast.LENGTH_SHORT).show()
+                })
+                queue.add(stringRequest)
+            delay(18000000)
         }
 
     }

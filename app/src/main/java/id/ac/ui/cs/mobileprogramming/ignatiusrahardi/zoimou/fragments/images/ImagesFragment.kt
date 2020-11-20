@@ -73,7 +73,6 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
         values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
         image_uri =
             activity?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
-        Log.d("rui", "${image_uri.path}")
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri)
         startActivityForResult(takePictureIntent, REQUEST_CODE_CAMERA)
@@ -86,7 +85,7 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
 
         adapter.setData(images)
         image_list.setHasFixedSize(true)
-        image_list.layoutManager = GridLayoutManager(requireContext(), 2)
+        image_list.layoutManager = GridLayoutManager(requireContext(), 4)
 
         image_list.adapter = adapter
     }
@@ -102,37 +101,18 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
         return false
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out kotlin.String>,
-        grantResults: IntArray
-    ): Unit {
-        if(requestCode == REQUEST_CODE_READ_EXT){
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                setGallery()
-                Toast.makeText(activity, "Images Loaded", Toast.LENGTH_LONG).show()
-            } else {
-                buttonCamera.isEnabled = false
-                Toast.makeText(
-                    activity,
-                    "You wont be able to access your gallery",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
-    }
 
     override fun onItemClick(currentImage: Bitmap) {
-        Toast.makeText(activity, "todo image", Toast.LENGTH_LONG).show()
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == Activity.RESULT_OK){
             setGallery()
-            Toast.makeText(activity, "Image Captured", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, R.string.camera_captured, Toast.LENGTH_LONG).show()
 
         } else {
-            Toast.makeText(activity, "Capture Image Cancelled", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity,  R.string.camera_cancelled, Toast.LENGTH_LONG).show()
 
         }
         super.onActivityResult(requestCode, resultCode, data)

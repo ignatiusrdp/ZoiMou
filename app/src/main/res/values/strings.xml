@@ -44,4 +44,10 @@
     <string name="todo_completed">Todo Completed!</string>
     <string name="message_done_todo">Are you done with this todo?</string>
     <string name="message_delete_all_notes">Are you sure you want to delete all of your notes?</string>
+    <string name="error_permisson">\"You wont be able to access weather and memories feature\"</string>
+    <string name="error_locaton">\"Please enable your location service\"</string>
+    <string name="error_camera">unbale to open camera</string>
+    <string name="camera_captured">Image Captured</string>
+    <string name="camera_cancelled">Capture Cancelled</string>
+    <string name="error_get_weather">Error when gathering weather data:</string>
 </resources>

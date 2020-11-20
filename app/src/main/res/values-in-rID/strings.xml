@@ -40,4 +40,10 @@
     <string name="todo_completed">Todo Selesai!</string>
     <string name="message_done_todo">Apakah todo ini sudah selasai?</string>
     <string name="message_delete_all_notes">Apakah kamu yakin ingin menghapus semua catatan kamu?</string>
+    <string name="error_permisson">Kamu tidak bisa mengakses fitur weather dan memories</string>
+    <string name="error_locaton">Harap nyalakan lokasi</string>
+    <string name="error_camera">tidak bisa membuka kamera</string>
+    <string name="camera_captured">Gambar berhasil diambil</string>
+    <string name="camera_cancelled">Pengambilan gambar gagal</string>
+    <string name="error_get_weather">Ada kesalahan saat mengumpulkan data cuaca:</string>
 </resources>

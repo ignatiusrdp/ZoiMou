@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                        weatherViewModel.deleteWeather()
                        getWeatherData()
                    } else {
-                       Toast.makeText(this,"Please enable your location service", Toast.LENGTH_SHORT).show()
+                       Toast.makeText(this,R.string.error_locaton, Toast.LENGTH_SHORT).show()
                    }
                }
             }
@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 getWeatherData()
             } else {
-                Toast.makeText(this,"You wont be able to access weather and gallery app", Toast.LENGTH_LONG).show()
+                Toast.makeText(this,R.string.error_permisson, Toast.LENGTH_LONG).show()
             }
         }
     }
