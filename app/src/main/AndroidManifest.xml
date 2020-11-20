@@ -2,18 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
+        android:name=".notifications.NotificationChannels"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".activity.CreateNotesActivity"
-            android:parentActivityName=".activity.MainActivity">
 
-        </activity>
+        <service
+            android:name=".services.GetWeatherService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.notes.EditNotesActivity"
+            android:parentActivityName=".activity.notes.NoteItemsActivity" />
+        <activity
+            android:name=".activity.notes.NoteItemsActivity"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.notes.CreateNotesActivity"
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name">

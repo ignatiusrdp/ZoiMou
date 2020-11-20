@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.images
+package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

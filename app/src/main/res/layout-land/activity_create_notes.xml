@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.notes.CreateNotesActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="496dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/customborder"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <EditText
+                    android:id="@+id/createTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
+                    android:hint="@string/create_title"
+                    android:inputType="text"
+                    android:scrollHorizontally="false"/>
+
+                <EditText
+                    android:id="@+id/createContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@null"
+                    android:hint="@string/create_content"
+                    android:inputType="textMultiLine"
+                    android:lines="20"
+                    android:minLines="5"
+                    android:scrollHorizontally="false"
+                    android:gravity="top|left"
+                    android:scrollbars="vertical"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submitCreateButton"
+                android:layout_width="393dp"
+                android:layout_height="58dp"
+                android:layout_gravity="bottom|center"
+                android:text="@string/submit" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

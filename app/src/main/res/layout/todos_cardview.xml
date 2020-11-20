@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <CheckBox
+            android:id="@+id/checkboxTodo"
+            android:layout_width="350dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/todo_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkboxTodo"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp" />
+        <ImageView
+            android:id="@+id/delete_todo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/checkboxTodo"
+            android:src="@drawable/ic_delete"
+            />
+
+
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

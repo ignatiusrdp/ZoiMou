@@ -33,7 +33,7 @@
             android:layout_below="@id/note_title"
             android:layout_marginLeft="9dp"
             android:layout_toRightOf="@+id/note_ico"
-            android:text="Tap to see the details"
+            android:text="@string/desc"
             android:textSize="15sp" />
 
 

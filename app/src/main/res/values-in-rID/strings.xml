@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZoiMou</string>
+    <string name="title_notes">Catatan</string>
+    <string name="title_images">Kenangan</string>
+    <string name="title_weather">Cuaca</string>
+    <string name="create_title">Judul</string>
+    <string name="create_content">Apa yang sedang kamu pikirkan</string>
+    <string name="submit">Kirimkan</string>
+    <string name="edit">Edit</string>
+    <string name="title_todo">Todo</string>
+    <string name="desc">Tekan untuk melihat lebih detil</string>
+    <string name="title_delete_note">Hapus Catatan</string>
+    <string name="message_delete_note">Apakah kamu yakin ingin menghapus catatan ini?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="title_add_notes">Tambah Catatan</string>
+    <string name="title_edit_notes">Ubah Catatan</string>
+    <string name="note_add_success">Catatan Berhasil Ditambah!</string>
+    <string name="note_warn">Tolong isi catatanmu!</string>
+    <string name="note_edit_success">Catatan Berhasil Diganti!</string>
+    <string name="note_delete_success">Catatn Berhasil Dibuang!</string>
+    <string name="no_notes_available">Tidak ada catatan !</string>
+    <string name="weather_location">Harap Aktifkan Lokasi Kamu</string>
+    <string name="no_todos_available">Tidak ada todo yang dibuat!</string>
+    <string name="your_todo">Todo Kamu</string>
+    <string name="your_duetime">Batas Waktu</string>
+    <string name="title_delete_todo">Hapus Todo Kamu</string>
+    <string name="title_add_todo">Tambah Todo Kamu</string>
+    <string name="title_edit_todo">Ubah Todo Kamu</string>
+    <string name="title_todo_confirmation">Konfirmasi</string>
+    <string name="message_delete_todo">Apakah kamu yakin ingin menghapus todo ini?</string>
+    <string name="message_delete_all_todo">Apakah kamu yakin ingin menghapus semua todo kamu?</string>
+    <string name="success_delete_todo">Todo berhasil dihapus!</string>
+    <string name="button_add_todo">Tambah Todo</string>
+    <string name="warn_add_todo">Gagal menambahkan todo, harap isi semua masukan</string>
+    <string name="button_edit_todo">Ubah Todo</string>
+    <string name="warn_edit_todo">Gagal mengubah todo, harap isi semua masukan</string>
+    <string name="cancel">Batal</string>
+    <string name="todo_completed">Todo Selesai!</string>
+    <string name="message_done_todo">Apakah todo ini sudah selasai?</string>
+    <string name="message_delete_all_notes">Apakah kamu yakin ingin menghapus semua catatan kamu?</string>
+</resources>

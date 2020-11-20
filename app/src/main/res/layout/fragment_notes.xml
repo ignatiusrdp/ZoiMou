@@ -17,7 +17,7 @@
         tools:listitem="@layout/notes_cardview" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabCreate"
+        android:id="@+id/fabCreateNotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
@@ -29,6 +29,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.958" />
+    <TextView
+        android:id="@+id/empty_view_notes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:text="@string/no_notes_available" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
