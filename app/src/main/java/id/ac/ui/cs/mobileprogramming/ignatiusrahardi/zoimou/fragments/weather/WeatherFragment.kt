@@ -1,7 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.weather
 
 import android.content.Intent
-import android.icu.number.NumberFormatter.with
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

@@ -6,34 +6,25 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.adapters.ImageAdapter
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.provider.ImageProvider
 import kotlinx.android.synthetic.main.fragment_images.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Default
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.launch
-import java.io.File
 
 class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
 
     private lateinit var image_uri: Uri
-    private var images = emptyList<Bitmap>()
+    private var images = emptyList<Uri>()
     private val REQUEST_CODE_CAMERA = 100
 
     override fun onCreateView(
@@ -109,7 +100,7 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
     }
 
 
-    override fun onItemClick(currentImage: Bitmap) {
+    override fun onItemClick(currentImage: Uri) {
 
     }
 
