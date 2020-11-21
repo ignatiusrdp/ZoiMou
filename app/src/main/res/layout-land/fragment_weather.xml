@@ -58,10 +58,10 @@
         android:id="@+id/weatherIco"
         android:layout_width="121dp"
         android:layout_height="73dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
         android:src="@drawable/weather_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintHorizontal_bias="0.355"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeUpdated" />
 
@@ -102,7 +102,7 @@
         android:text="31°C"
         android:textAlignment="center"
         android:textColor="@color/whiteColor"
-        android:textSize="35sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"

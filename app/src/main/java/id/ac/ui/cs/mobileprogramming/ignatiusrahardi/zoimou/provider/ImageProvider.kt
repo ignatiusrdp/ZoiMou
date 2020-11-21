@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.provider
 
+import android.content.Context
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,7 +10,7 @@ import androidx.fragment.app.FragmentActivity
 
 class ImageProvider {
     companion object{
-        fun getPictures(activity: FragmentActivity?): List<Bitmap> {
+        fun getPictures(context: Context?): List<Bitmap> {
             val path = "Pictures"
 
             val selection = MediaStore.Files.FileColumns.RELATIVE_PATH + " like ? "
@@ -21,7 +22,7 @@ class ImageProvider {
                 MediaStore.MediaColumns._ID,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME
             )
-            val cursor: Cursor? = activity?.contentResolver?.query(
+            val cursor: Cursor? = context?.contentResolver?.query(
                 uri, projection, selection, selectionargs, orderBy
             )
             var images: MutableList<Bitmap> = mutableListOf<Bitmap>()
@@ -33,7 +34,7 @@ class ImageProvider {
                     val uriImage = Uri.withAppendedPath(uri, "" + imageId)
 
                     var image: Bitmap
-                    activity?.contentResolver.openFileDescriptor(uriImage, "r").use { pfd ->
+                    context.contentResolver.openFileDescriptor(uriImage, "r").use { pfd ->
                         if( pfd != null ){
                             image = BitmapFactory.decodeFileDescriptor(pfd.fileDescriptor)
                             images.add(image)

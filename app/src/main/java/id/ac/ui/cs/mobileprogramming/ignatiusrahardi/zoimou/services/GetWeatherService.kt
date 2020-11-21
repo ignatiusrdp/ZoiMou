@@ -163,12 +163,10 @@ class GetWeatherService : LifecycleService() {
     private suspend fun insertData(weather: Weather){
 
         if(db.weatherDao().checkIfExist(0)){
-            println("UPDATE")
             sendBroadcast(notificationIntent)
             db.weatherDao().updateWeather(weather)
 
         } else {
-            println("ADD")
             db.weatherDao().addWeather(weather)
         }
     }

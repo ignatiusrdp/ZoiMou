@@ -14,7 +14,6 @@ import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.notifications.Notifi
 
 class NotificationBroadcastReceiver : BroadcastReceiver(){
     override fun onReceive(context: Context, intent: Intent?) {
-        println("MASUK")
         sendNotification(context)
     }
 

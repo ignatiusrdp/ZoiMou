@@ -19,12 +19,11 @@ import androidx.navigation.ui.setupWithNavController
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.services.GetWeatherService
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.viewmodels.WeatherViewModel
-import kotlinx.android.synthetic.main.fragment_images.*
 
 class MainActivity : AppCompatActivity() {
 
 
-    private val REQUEST_CODE_LOCATION = 69
+    private val REQUEST_CODE = 69
     private lateinit var weatherViewModel: WeatherViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE_LOCATION
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE
         )
     }
 
@@ -120,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        if(requestCode == REQUEST_CODE_LOCATION){
+        if(requestCode == REQUEST_CODE){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 getWeatherData()
             } else {

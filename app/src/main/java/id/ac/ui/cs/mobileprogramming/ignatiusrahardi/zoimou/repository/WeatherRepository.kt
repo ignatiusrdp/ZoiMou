@@ -8,18 +8,6 @@ class WeatherRepository(private val weatherDao: WeatherDao) {
 
     val getWeatherData : LiveData<Weather> = weatherDao.getWeatherData(0)
 
-    suspend fun addWeather(weather: Weather){
-        weatherDao.addWeather(weather)
-    }
-
-    suspend fun updateWeather(weather: Weather){
-        weatherDao.updateWeather(weather)
-    }
-
-    suspend fun checkIfExist(id: Int){
-        weatherDao.checkIfExist(id)
-    }
-
     suspend fun deleteWeather() {
         weatherDao.deleteWeather()
     }

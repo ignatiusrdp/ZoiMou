@@ -23,16 +23,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.adapters.ImageAdapter
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.provider.ImageProvider
-import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.viewmodels.ImagesViewModel
 import kotlinx.android.synthetic.main.fragment_images.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Default
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
 import java.io.File
 
 class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
 
     private lateinit var image_uri: Uri
-    private lateinit var imagesViewModel: ImagesViewModel
     private var images = emptyList<Bitmap>()
-    private val REQUEST_CODE_READ_EXT = 99
     private val REQUEST_CODE_CAMERA = 100
 
     override fun onCreateView(
@@ -40,8 +41,7 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        imagesViewModel =
-                ViewModelProviders.of(this).get(ImagesViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_images, container, false)
 
         return root
@@ -50,7 +50,7 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (checkPermissionGallery()){
-           setGallery()
+
         } else {
             buttonCamera.isEnabled = false
         }
@@ -60,17 +60,22 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
             if(activity?.let { checkCameraHardware(it) }!!){
                 openCamera()
             } else {
-                Toast.makeText(activity, "Unable to open camera", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, R.string.error_camera, Toast.LENGTH_SHORT).show()
             }
 
         }
+        load.setOnClickListener { load ->
+            setGallery()
+        }
     }
 
-    fun openCamera(){
+    private fun openCamera(){
         val values = ContentValues()
         values.put(MediaStore.Images.Media.TITLE, "Picture")
         values.put(MediaStore.Images.Media.DESCRIPTION, "from zoimou app")
+        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
         values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+
         image_uri =
             activity?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -79,16 +84,18 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
     }
 
 
-    fun setGallery(){
+    private fun setGallery(){
         val adapter = ImageAdapter(this)
         images = ImageProvider.getPictures(activity)
 
         adapter.setData(images)
         image_list.setHasFixedSize(true)
         image_list.layoutManager = GridLayoutManager(requireContext(), 4)
-
+        loading.visibility= View.GONE
         image_list.adapter = adapter
+
     }
+
     private fun checkCameraHardware(context: Context): Boolean {
         return context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)
     }
@@ -108,7 +115,6 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_CODE_CAMERA && resultCode == Activity.RESULT_OK){
-            setGallery()
             Toast.makeText(activity, R.string.camera_captured, Toast.LENGTH_LONG).show()
 
         } else {
