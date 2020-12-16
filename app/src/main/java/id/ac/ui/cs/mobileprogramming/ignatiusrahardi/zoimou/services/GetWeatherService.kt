@@ -1,22 +1,17 @@
 package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.services
 
-import android.app.Service
-import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
 import android.os.Build
 import android.os.IBinder
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LifecycleService
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.*
@@ -56,12 +51,8 @@ class GetWeatherService : LifecycleService() {
         if (checkPermission()){
             fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
                 var location: Location = task.result
-                if(location == null){
-                    getNewLocation()
-                } else {
-                    job.launch {
-                        coroutine(location.latitude, location.longitude)
-                    }
+                job.launch {
+                    coroutine(location.latitude, location.longitude)
                 }
 
             }
@@ -97,14 +88,12 @@ class GetWeatherService : LifecycleService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val current: LocalDateTime = LocalDateTime.now()
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")
-            var myDate: String =  current.format(formatter)
 
-            return myDate
+            return current.format(formatter)
         } else {
             var date = Date()
             val formatter = SimpleDateFormat("dd/MM/yyyy hh:mm a")
-            val myDate: String = formatter.format(date)
-            return myDate
+            return formatter.format(date)
         }
     }
 
@@ -152,6 +141,7 @@ class GetWeatherService : LifecycleService() {
                 },
                 {
                     err ->
+
                     Toast.makeText(this,"Error when gathering weather data: $err", Toast.LENGTH_SHORT).show()
                 })
                 queue.add(stringRequest)

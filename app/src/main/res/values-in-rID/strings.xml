@@ -21,7 +21,7 @@
     <string name="note_edit_success">Catatan Berhasil Diganti!</string>
     <string name="note_delete_success">Catatn Berhasil Dibuang!</string>
     <string name="no_notes_available">Tidak ada catatan !</string>
-    <string name="weather_location">Harap Aktifkan Lokasi Kamu</string>
+    <string name="weather_location">Harap Aktifkan Lokasi dan Koneksi Internet  Kamu</string>
     <string name="no_todos_available">Tidak ada todo yang dibuat!</string>
     <string name="your_todo">Todo Kamu</string>
     <string name="your_duetime">Batas Waktu</string>
@@ -46,4 +46,11 @@
     <string name="camera_captured">Gambar berhasil diambil</string>
     <string name="camera_cancelled">Pengambilan gambar gagal</string>
     <string name="error_get_weather">Ada kesalahan saat mengumpulkan data cuaca:</string>
+    <string name="images_load">Tekan Muat untuk Memuat Galeri</string>
+    <string name="images_btn">Muat</string>
+    <string name="images_cam">Kamera</string>
+    <string name="no_todo">Tidak ada todo yang dibuat!</string>
+    <string name="title_permission_alert">Izin dibutuhkan</string>
+    <string name="title_connectivity_alert">Tidak Ada Internet</string>
+    <string name="alert_connectivity">Anda tidak akan bisa mendapatkan data cuaca. Untuk mendapatkan data cuaca, silakan hidupkan internet dan mulai ulang aplikasi</string>
 </resources>

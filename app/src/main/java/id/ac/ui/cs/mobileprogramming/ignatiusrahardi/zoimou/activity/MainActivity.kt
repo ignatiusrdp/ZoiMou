@@ -2,11 +2,14 @@ package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.activity
 
 import android.Manifest
 import android.app.ActivityManager
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.LocationManager
+import android.net.ConnectivityManager
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         weatherViewModel =
             ViewModelProvider(this).get(WeatherViewModel::class.java)
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
@@ -49,8 +51,12 @@ class MainActivity : AppCompatActivity() {
             checkPermission() -> {
                if (!isMyServiceRunning(GetWeatherService::class.java)){
                    if(isLocationEnabled()){
-                       weatherViewModel.deleteWeather()
-                       getWeatherData()
+                       if(checkConnection()){
+                           weatherViewModel.deleteWeather()
+                           getWeatherData()
+                       } else {
+                           alertConnectivity()
+                       }
                    } else {
                        Toast.makeText(this,R.string.error_locaton, Toast.LENGTH_SHORT).show()
                    }
@@ -62,14 +68,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -78,12 +76,38 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun checkPermission():Boolean{
+    private fun checkConnection() : Boolean{
+        val connectivity = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivity.activeNetworkInfo
+
+        return activeNetwork!= null && activeNetwork.isConnectedOrConnecting
+    }
+
+    private fun alertConnectivity(){
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setPositiveButton("OK"){_,_ ->
+
+        }
+        alertDialog.setTitle(R.string.title_connectivity_alert)
+        alertDialog.setMessage(R.string.alert_connectivity)
+        alertDialog.create().show()
+    }
+
+    private fun alertPermisson(){
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setPositiveButton("OK"){_,_ ->
+
+        }
+        alertDialog.setTitle(R.string.title_permission_alert)
+        alertDialog.setMessage(R.string.error_permisson)
+        alertDialog.create().show()
+    }
+    private fun checkPermission():Boolean{
         if(
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) === PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) === PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) === PackageManager.PERMISSION_GRANTED||
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) === PackageManager.PERMISSION_GRANTED
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED||
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
         ){
             return true
         }
@@ -121,9 +145,14 @@ class MainActivity : AppCompatActivity() {
     ) {
         if(requestCode == REQUEST_CODE){
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                getWeatherData()
+                if(checkConnection()){
+                    weatherViewModel.deleteWeather()
+                    getWeatherData()
+                } else {
+                    alertConnectivity()
+                }
             } else {
-                Toast.makeText(this,R.string.error_permisson, Toast.LENGTH_LONG).show()
+                alertPermisson()
             }
         }
     }

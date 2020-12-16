@@ -20,7 +20,7 @@
     <string name="note_edit_success">Note Updated!</string>
     <string name="note_delete_success">Note Deleted!</string>
     <string name="no_notes_available">No notes created yet!</string>
-    <string name="weather_location">Please Enable Your Location</string>
+    <string name="weather_location">Please Enable Your Location and Internet Connection</string>
     <string name="weather_date" translatable="false">Updated at: xx/xx/20xx xx:xx PM</string>
     <string name="weather" translatable="false">Clear</string>
     <string name="weather_desc" translatable="false">Clear Sky</string>
@@ -46,8 +46,15 @@
     <string name="message_delete_all_notes">Are you sure you want to delete all of your notes?</string>
     <string name="error_permisson">\"You wont be able to access weather and memories feature\"</string>
     <string name="error_locaton">\"Please enable your location service\"</string>
-    <string name="error_camera">unbale to open camera</string>
+    <string name="error_camera">unable to open camera</string>
     <string name="camera_captured">Image Captured</string>
     <string name="camera_cancelled">Capture Cancelled</string>
     <string name="error_get_weather">Error when gathering weather data:</string>
+    <string name="images_load">Press Load to load Gallery</string>
+    <string name="images_btn">Load</string>
+    <string name="images_cam">Camera</string>
+    <string name="no_todo">No Todo Created Yet!</string>
+    <string name="title_permission_alert">Permission needed</string>
+    <string name="title_connectivity_alert">No Network Connection</string>
+    <string name="alert_connectivity">You wont be able to get weather data. To get weather data, please turn on the internet and restart the app</string>
 </resources>

@@ -2,6 +2,7 @@ package id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.fragments.images
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -40,10 +41,12 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (checkPermissionGallery()){
-
-        } else {
+        if (!checkPermissionGallery()){
             buttonCamera.isEnabled = false
+            load.isEnabled = false
+        } else {
+            buttonCamera.isEnabled = true
+            load.isEnabled = true
         }
 
         buttonCamera.setOnClickListener { view ->
@@ -98,6 +101,7 @@ class ImagesFragment : Fragment() , ImageAdapter.OnItemClickListener{
         }
         return false
     }
+
 
 
     override fun onItemClick(currentImage: Uri) {

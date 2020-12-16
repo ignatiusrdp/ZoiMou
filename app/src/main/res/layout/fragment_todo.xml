@@ -35,5 +35,5 @@
         android:gravity="center"
         android:textSize="20sp"
         android:visibility="gone"
-        android:text="No Todo Created Yet!" />
+        android:text="@string/no_todo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
