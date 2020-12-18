@@ -40,6 +40,14 @@ class GetWeatherService : LifecycleService() {
     val notificationBroadcastReceiver: NotificationBroadcastReceiver = NotificationBroadcastReceiver()
     val notificationIntent: Intent = Intent("id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.WeatherNotification")
 
+    external fun getTime(): String
+
+    companion object {
+        // Used to load the 'native-lib' library on application startup.
+        init {
+            System.loadLibrary("native-lib")
+        }
+    }
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -48,6 +56,7 @@ class GetWeatherService : LifecycleService() {
         registerReceiver(notificationBroadcastReceiver, weatherFilter)
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         db = AppDatabase.getDatabase(application)
+
         if (checkPermission()){
             fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
                 var location: Location = task.result
@@ -62,58 +71,19 @@ class GetWeatherService : LifecycleService() {
     }
     private fun checkPermission():Boolean{
         if(
-            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) === PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION) === PackageManager.PERMISSION_GRANTED
+            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+            ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
         ){
             return true
         }
         return false
     }
 
-    private fun getNewLocation(){
-        locationRequest =  LocationRequest()
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 0
-        locationRequest.fastestInterval = 0
-        locationRequest.numUpdates = 1
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-       if(checkPermission()){
-           fusedLocationProviderClient!!.requestLocationUpdates(
-               locationRequest,locationCallback,Looper.myLooper()
-           )
-       }
-    }
-
-    private fun getCurrentTime() : String{
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val current: LocalDateTime = LocalDateTime.now()
-            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")
-
-            return current.format(formatter)
-        } else {
-            var date = Date()
-            val formatter = SimpleDateFormat("dd/MM/yyyy hh:mm a")
-            return formatter.format(date)
-        }
-    }
-
-
-    private val locationCallback = object : LocationCallback(){
-        override fun onLocationResult(locationResult: LocationResult) {
-            var location: Location = locationResult.lastLocation
-
-            job.launch {
-                coroutine(location.latitude, location.longitude)
-            }
-        }
-    }
-
-
     private suspend fun coroutine(lat: Double, lon: Double){
         val queue = Volley.newRequestQueue(this)
         val url = "https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$API_ID&units=metric"
         while(isActive){
-            val currentTime = getCurrentTime()
+            val currentTime = getTime()
 
             val stringRequest = StringRequest(
                 Request.Method.GET, url,
