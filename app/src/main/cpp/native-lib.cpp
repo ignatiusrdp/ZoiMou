@@ -10,8 +10,5 @@ Java_id_ac_ui_cs_mobileprogramming_ignatiusrahardi_zoimou_services_GetWeatherSer
         jobject /* this */) {
     time_t now = time(0);
     tm* localtm = localtime(&now);
-
-
-
     return env->NewStringUTF(asctime(localtm));
 }

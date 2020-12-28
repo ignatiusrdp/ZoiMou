@@ -57,4 +57,7 @@
     <string name="title_permission_alert">Permission needed</string>
     <string name="title_connectivity_alert">No Network Connection</string>
     <string name="alert_connectivity">You wont be able to get weather data. To get weather data, please turn on the internet and restart the app</string>
+    <string name="notification_title">There is an update in your weather info!</string>
+    <string name="notification_text">The Weather data is updated! check it out</string>
+    <string name="error_get_weather_data">Error when gathering weather data. it might be your connection or the API problem</string>
 </resources>

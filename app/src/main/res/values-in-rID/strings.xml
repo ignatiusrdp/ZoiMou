@@ -53,4 +53,7 @@
     <string name="title_permission_alert">Izin dibutuhkan</string>
     <string name="title_connectivity_alert">Tidak Ada Internet</string>
     <string name="alert_connectivity">Anda tidak akan bisa mendapatkan data cuaca. Untuk mendapatkan data cuaca, silakan hidupkan internet dan mulai ulang aplikasi</string>
+    <string name="notification_title">Terdapat update Cuaca!</string>
+    <string name="notification_text">Aplikasi cuaca telah mengupdate data, lihat!</string>
+    <string name="error_get_weather_data">Kesalahan saat mengumpulkan data cuaca. mungkin koneksi Anda atau masalah API</string>
 </resources>

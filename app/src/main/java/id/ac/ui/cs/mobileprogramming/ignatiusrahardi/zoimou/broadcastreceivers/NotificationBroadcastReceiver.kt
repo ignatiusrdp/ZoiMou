@@ -17,7 +17,7 @@ class NotificationBroadcastReceiver : BroadcastReceiver(){
         sendNotification(context)
     }
 
-    fun sendNotification(context: Context){
+    private fun sendNotification(context: Context){
         val pendingIntent: PendingIntent = NavDeepLinkBuilder(context)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.mobile_navigation)
@@ -25,8 +25,8 @@ class NotificationBroadcastReceiver : BroadcastReceiver(){
             .createPendingIntent()
         val builder : Notification = NotificationCompat.Builder(context, NotificationChannels.WEATHER_CHANNEL_ID)
             .setSmallIcon(R.drawable.weather_placeholder)
-            .setContentTitle("There is an update in your weather info!")
-            .setContentText("The Weather data is updated! check it out")
+            .setContentTitle(R.string.notification_title.toString())
+            .setContentText(R.string.notification_text.toString())
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .build()

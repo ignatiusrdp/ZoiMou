@@ -9,7 +9,6 @@ import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.data.Notes
 import kotlinx.android.synthetic.main.notes_cardview.view.*
 
-// still dummy data
 class NotesAdapter(
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {

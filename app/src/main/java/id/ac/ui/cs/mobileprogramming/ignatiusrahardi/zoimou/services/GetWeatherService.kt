@@ -16,6 +16,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.gms.location.*
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.AppDatabase
+import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.R
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.broadcastreceivers.NotificationBroadcastReceiver
 import id.ac.ui.cs.mobileprogramming.ignatiusrahardi.zoimou.data.Weather
 import kotlinx.coroutines.CoroutineScope
@@ -112,7 +113,7 @@ class GetWeatherService : LifecycleService() {
                 {
                     err ->
 
-                    Toast.makeText(this,"Error when gathering weather data: $err", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.error_get_weather_data, Toast.LENGTH_SHORT).show()
                 })
                 queue.add(stringRequest)
             delay(18000000)
